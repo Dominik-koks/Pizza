@@ -1,22 +1,23 @@
 import React, { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from 'react-redux';
-import { setSort } from "../../Redux/Slices/FilterSlice";
+import { selectSort, setSort } from "../../Redux/Slices/FilterSlice";
 
 
 
-const sortType = [
-    { name: 'популярности ⬆', sort: 'rating' },
-    { name: 'популярности ⬇', sort: '-rating' },
-    { name: 'цене ⬆', sort: 'price' },
-    { name: 'цене ⬇', sort: '-price' },
-    { name: 'алфавиту ⬆', sort: 'title' },
-    { name: 'алфавиту ⬇', sort: '-title' }]
+
+export const sortList = [
+    { name: 'популярности ⬆', sortProperty: 'rating' },
+    { name: 'популярности ⬇', sortProperty: '-rating' },
+    { name: 'цене ⬆', sortProperty: 'price' },
+    { name: 'цене ⬇', sortProperty: '-price' },
+    { name: 'алфавиту ⬆', sortProperty: 'title' },
+    { name: 'алфавиту ⬇', sortProperty: '-title' }]
 
 
 function Sort() {
     const [open, setOpen] = useState(false)
     const dispatch = useDispatch()
-    const sort = useSelector(state => state.filter.sort)
+    const sort = useSelector(selectSort)
     const sortRef = useRef()
 
     const onClickSort = (obj) => {
@@ -57,7 +58,7 @@ function Sort() {
             {
                 open && <div className="sort__popup">
                     <ul>
-                        {sortType.map((obj, index) => <li key={index} onClick={() => onClickSort(obj)} className={sort.sort === obj.sort ? 'active' : ''}>{obj.name}</li>)}
+                        {sortList.map((obj, index) => <li key={index} onClick={() => onClickSort(obj)} className={sort.sortProperty === obj.sortProperty ? 'active' : ''}>{obj.name}</li>)}
                     </ul>
                 </div>
             }
