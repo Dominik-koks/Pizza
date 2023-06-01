@@ -8,7 +8,7 @@ import { SearchContext } from '../App';
 import { selectFilter, setCategoryId, setCurrentPage, setFilters } from '../Redux/Slices/FilterSlice'
 import { useDispatch, useSelector } from 'react-redux';
 import qs from 'qs'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
 import { fetchPizzas, selectPizza } from '../Redux/Slices/PizzasSlice';
 
@@ -96,7 +96,7 @@ function Home() {
     }, [categoryId, sort.sortProperty, searchValue, currentPage,])
 
 
-    const pizzas = items.map(obj => <PizzaBlock key={obj.id} {...obj} />)
+    const pizzas = items.map(obj => <Link key={obj.id} to={`/pizza/${obj.id}`}><PizzaBlock  {...obj} /></Link>)
     const skeletons = [...new Array(6)].map((obj, index) => <Skeleton key={index} {...obj} />)
 
 
