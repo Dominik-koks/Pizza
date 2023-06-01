@@ -96,7 +96,7 @@ function Home() {
     }, [categoryId, sort.sortProperty, searchValue, currentPage,])
 
 
-    const pizzas = items.map(obj => <Link key={obj.id} to={`/pizza/${obj.id}`}><PizzaBlock  {...obj} /></Link>)
+    const pizzas = items.map(obj => <PizzaBlock key={obj.id} {...obj} />)
     const skeletons = [...new Array(6)].map((obj, index) => <Skeleton key={index} {...obj} />)
 
 
