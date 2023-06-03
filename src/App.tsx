@@ -1,5 +1,4 @@
-import React, { createContext, useState } from 'react';
-import Header from './components/Header/Header';
+import React from 'react';
 import './scss/app.scss'
 
 import Home from './pages/Home';

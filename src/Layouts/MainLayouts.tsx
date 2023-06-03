@@ -1,8 +1,8 @@
-import React, { Children } from 'react'
+import React from 'react'
 import Header from '../components/Header/Header'
 import { Outlet } from 'react-router-dom'
 
-function MainLayouts() {
+const MainLayouts: React.FC = () => {
     return (
         <div className="wrapper">
             <Header />

@@ -4,7 +4,17 @@ import { addItem, selectCartItem, selectNewPrice, } from '../../Redux/Slices/car
 import { Link } from 'react-router-dom'
 
 
-function PizzaBlock({ title, price, imageUrl, sizes, types, id }) {
+type PizzaBlockProps = {
+    title: string;
+    price: number;
+    imageUrl: string;
+    sizes: number[];
+    types: number[];
+    id: string;
+}
+
+
+const PizzaBlock: React.FC<PizzaBlockProps> = ({ title, price, imageUrl, sizes, types, id }) => {
 
     const typeNames = ['Тонкое', 'Традиционное']
     const [activeSizeIndex, setActiveSizeIndex] = useState(0)

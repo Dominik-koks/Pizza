@@ -6,10 +6,10 @@ import { clearItems, selectCart } from '../Redux/Slices/cartSlice'
 import CartEmpty from '../components/CartEmpty'
 
 
-function Cart() {
+const Cart: React.FC = () => {
 
     const { totalPrice, items, } = useSelector(selectCart)
-    const totalCount = items.reduce((sum, item) => sum + item.count, 0)
+    const totalCount = items.reduce((sum: number, item: any) => sum + item.count, 0)
     const dispatch = useDispatch()
 
     const onClickClear = () => {
@@ -51,7 +51,7 @@ function Cart() {
                         </div>
                     </div>
                     <div className="content__items">
-                        {items.map(item => <CartItem key={`${item.id} ${item.size} ${item.type}`} {...item} />)}
+                        {items.map((item: any) => <CartItem key={`${item.id} ${item.size} ${item.type}`} {...item} />)}
 
                     </div>
                     <div className="cart__bottom">
@@ -60,7 +60,7 @@ function Cart() {
                             <span> Сумма заказа: <b>{totalPrice} ₽</b> </span>
                         </div>
                         <div className="cart__bottom-buttons">
-                            <Link to='/' href="/" className="button button--outline button--add go-back-btn">
+                            <Link to='/' className="button button--outline button--add go-back-btn">
                                 <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M7 13L1 6.93015L6.86175 1" stroke="#D3D3D3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
                                 </svg>

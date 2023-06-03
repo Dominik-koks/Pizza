@@ -7,10 +7,10 @@ import { selectCart } from '../../Redux/Slices/cartSlice'
 
 
 
-function Header() {
+const Header: React.FC = () => {
 
     const { items, totalPrice } = useSelector(selectCart)
-    const totalCount = items.reduce((sum, item) => sum + item.count, 0)
+    const totalCount = items.reduce((sum: number, item: {count: number}) => sum + item.count, 0)
     const { pathname } = useLocation()
 
     return (
