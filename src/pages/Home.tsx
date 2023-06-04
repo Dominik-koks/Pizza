@@ -5,16 +5,18 @@ import PizzaBlock from '../components/PizzaBlock/PizzaBlock';
 import Skeleton from '../components/PizzaBlock/Skeleton';
 import Pagination from '../components/Pagination/Pagination';
 import { selectFilter, setCategoryId, setCurrentPage, setFilters } from '../Redux/Slices/FilterSlice'
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import qs from 'qs'
 import { useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
 import { fetchPizzas, selectPizza } from '../Redux/Slices/PizzasSlice';
+import { useAppDispatch } from '../Redux/Store';
+
 
 const Home: React.FC = () => {
 
     const navigate = useNavigate()
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const isSearch = useRef(false)
     const isMounted = useRef(false)
 
@@ -41,13 +43,12 @@ const Home: React.FC = () => {
         const search = searchValue ? `search=${searchValue}` : ''
 
         dispatch(
-            //@ts-ignore
             fetchPizzas({
             sortBy,
             order,
             category,
             search,
-            currentPage,
+            currentPage: String(currentPage),
         }))
 
         window.scrollTo(0, 0)
@@ -69,12 +70,20 @@ const Home: React.FC = () => {
     }, [categoryId, sort.sortProperty, currentPage,])
 
 
+// type Params = {
+//     searchValue: string
+//   categoryId: number
+//   currentPage: number
+//   sortProperty: "price" | "rating" | "title" | "-rating" | "-price" | "-title"
+// }
+
     //Если был первый рендер то проверяем URL-параметры и сохраняем их в редаксе
     useEffect(() => {
         if (window.location.search) {
-            const params = qs.parse(window.location.search.substring(1))
-            const sort = sortList.find(obj => obj.sortProperty === params.sortProperty)
-
+            // const params = (qs.parse(window.location.search.substring(1)) as unknown) as Params
+            const params: any = qs.parse(window.location.search.substring(1)) 
+            const sort = sortList.find((obj) => obj.sortProperty === params.sortProperty)
+console.log(params)
             dispatch(setFilters({
                 ...params,
                 sort

@@ -1,12 +1,9 @@
 import React, { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from 'react-redux';
-import { selectSort, setSort } from "../../Redux/Slices/FilterSlice";
+import { SortItem, selectSort, setSort } from "../../Redux/Slices/FilterSlice";
 
 
-type SortItem = {
-    name: string;
-    sortProperty: string;
-}
+
 
 
 // type PopupClick = React.MouseEvent<HTMLBodyElement> & {
