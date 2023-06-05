@@ -25,7 +25,16 @@ type PizzaSliceState = {
 }
 
 
-export const fetchPizzas = createAsyncThunk<Pizza[], Record<string, string>>(
+export type SearchPizzaParams = {
+  sortBy: string
+  order: string
+  category: string
+  search: string
+  currentPage: string
+}
+
+
+export const fetchPizzas = createAsyncThunk<Pizza[], SearchPizzaParams>(
     'pizza/fetchPizzasStatus',
     async (params: Record<string, string>) => {
       const { sortBy, order, category, search, currentPage,} = params
