@@ -83,7 +83,6 @@ const Home: React.FC = () => {
             // const params = (qs.parse(window.location.search.substring(1)) as unknown) as Params
             const params: any = qs.parse(window.location.search.substring(1)) 
             const sort = sortList.find((obj) => obj.sortProperty === params.sortProperty)
-console.log(params)
             dispatch(setFilters({
                 ...params,
                 sort
